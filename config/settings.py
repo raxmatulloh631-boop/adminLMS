@@ -88,9 +88,9 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "univercity_db",
-        'USER': "univercity_admin",
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'univercity_db',
+        'USER': 'postgres',
         'PASSWORD': 'root',
         'HOST': '127.0.0.1',
         'PORT': '5432',

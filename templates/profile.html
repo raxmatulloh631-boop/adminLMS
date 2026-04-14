@@ -1,38 +1,41 @@
-
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
- <div class="page-container">
-    <!-- HEADER DESKTOP-->
-    {%include 'userbar.html'%}
-    <!-- HEADER DESKTOP-->
+<div class="page-container">
+    {% include 'userbar.html' %}
 
-    <!-- MAIN CONTENT-->
     <div class="main-content">
         <div class="section__content section__content--p30">
             <div class="container-fluid">
+
                 <div class="row">
                     <div class="col-md-12">
                         <div class="overview-wrap">
                             <h2 class="title-1">Username: {{ request.user.username }}</h2>
-
-
-{#                            <a class="au-btn au-btn-icon au-btn--blue" href="{% url 'teacher_create' %}">#}
-{#                                <i class="zmdi zmdi-plus"></i>add</a>#}
                         </div>
-
                     </div>
                 </div>
-                <br>
-            <div class="row">
-                <div class="col-sm-6 col-lg-4">
-                <h2>Last actions:</h2>
-                {% for act in request.session.actions %}
-                    <div class="row">{{ act }}</div>
-                {% endfor %}
-            </div>
 
-                <div class="col-sm-6 col-lg-4">
+                <br>
+
+                <div class="row">
+                    <div class="col-sm-6 col-lg-4">
+                        <h2 style="font-weight: 700; margin-bottom: 15px;">Last actions:</h2>
+
+                        {% if actions %}
+                            {% for act in actions %}
+                                <div class="row" style="margin-bottom: 8px; font-size: 16px;">
+                                    {{ act }}
+                                </div>
+                            {% endfor %}
+                        {% else %}
+                            <div class="row" style="margin-bottom: 8px; font-size: 16px;">
+                                No actions yet
+                            </div>
+                        {% endif %}
+                    </div>
+
+                    <div class="col-sm-6 col-lg-6">
                         <div class="overview-item overview-item--c2">
                             <div class="overview__inner">
                                 <div class="overview-box clearfix">
@@ -40,7 +43,7 @@
                                         <i class="fa fa-bank"></i>
                                     </div>
                                     <div class="text">
-                                        <h2>{{ request.session.kafedra_count }}</h2>
+                                        <h2>{{ total }}</h2>
                                         <span>Count</span>
                                     </div>
                                 </div>
@@ -60,12 +63,11 @@
                             </div>
                         </div>
                     </div>
+
+                </div>
+
             </div>
-
-
         </div>
     </div>
-    <!-- END MAIN CONTENT-->
-    <!-- END PAGE CONTAINER-->
 </div>
 {% endblock %}
